@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.6)
+set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/cmake/ArduinoToolchain.cmake)
+set(PROJECT_NAME RazorIMUFirmware)
+project(${PROJECT_NAME})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+
+link_directories(${ARDUINO_SDK}/libraries)
+
+set(${PROJECT_NAME}_BOARD pro3_3V_8MHz)
+set(${PROJECT_NAME}_PORT /dev/ttyUSB0)
+set(${PROJECT_NAME}_SERIAL 57600)
+set(${PROJECT_NAME}_LIBRARY Wire)
+set(${PROJECT_NAME}_SRCS RazorIMUFirmware.cpp Sensor.cpp Accel.cpp Gyro.cpp Magn.cpp)
+set(${PROJECT_NAME}_HDRS Sensor.h Accel.h Gyro.h Magn.h)
+#set(${CMAKE_PROJECT_NAME}_SKETCH RazorIMUFirmware.ino)
+generate_arduino_firmware(${CMAKE_PROJECT_NAME})
