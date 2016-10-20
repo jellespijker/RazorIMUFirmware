@@ -1,0 +1,26 @@
+##############################################################
+
+pro3_3V_8MHz.name=ATmega328 (3.3V, 8 MHz)
+
+pro3_3V_8MHz.upload.tool=avrdude
+pro3_3V_8MHz.upload.protocol=arduino
+
+pro3_3V_8MHz.build.board=AVR_PRO
+pro3_3V_8MHz.build.core=arduino
+pro3_3V_8MHz.build.variant=eightanaloginputs
+
+pro3_3V_8MHz.upload.protocol=arduino
+pro3_3V_8MHz.upload.maximum_size=30720
+pr03_3V_8MHz.upload.maximum_data_size=2048
+pro3_3V_8MHz.upload.speed=57600
+
+pro3_3V_8MHz.bootloader.tool=avrdude
+pro3_3V_8MHz.bootloader.unlock_bits=0x3F
+pro3_3V_8MHz.bootloader.lock_bits=0x0F
+pro3_3V_8MHz.bootloader.low_fuses=0xFF
+pro3_3V_8MHz.bootloader.high_fuses=0xDA
+pro3_3V_8MHz.bootloader.extended_fuses=0x05
+pro3_3V_8MHz.bootloader.file=atmega/ATmegaBOOT_168_atmega328_pro_8MHz.hex
+
+pro3_3V_8MHz.build.mcu=atmega328p
+pro3_3V_8MHz.build.f_cpu=8000000L
