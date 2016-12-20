@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Magn.h"
 
 Magn::Magn()
