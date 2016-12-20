@@ -37,16 +37,22 @@ void ByteSend() {
     calculateLRC(data, 36, &data[37]); // Calculate the Longitudinal Reduncy Check
     Serial.write(data, 37); // Send data over UART
     delete[] data;
-    //Serial.flush();
 }
 
 void TextSend() {
+    pinMode(STATUS_LED_PIN, HIGH);
     Serial.println("A:" + String(sensors[0]->getXYZ()[0]) + "," + String(sensors[0]->getXYZ()[1]) + "," +
                    String(sensors[0]->getXYZ()[2]));
     Serial.println("M:" + String(sensors[1]->getXYZ()[0]) + "," + String(sensors[1]->getXYZ()[1]) + "," +
                    String(sensors[1]->getXYZ()[2]));
     Serial.println("G:" + String(sensors[2]->getXYZ()[0]) + "," + String(sensors[2]->getXYZ()[1]) + "," +
                    String(sensors[2]->getXYZ()[2]));
+    pinMode(STATUS_LED_PIN, LOW);
+}
+
+void SpeedProfile(uint8_t profile) {
+    // Set the ADXL345 Range
+    sensors[0]->SpeedProfile(profile);
 }
 
 void setup() {
@@ -54,7 +60,13 @@ void setup() {
 
     // Init Status Led;
     pinMode(STATUS_LED_PIN, OUTPUT);
-    pinMode(STATUS_LED_PIN, LOW);
+
+    for (int i = 0; i < 10; i++) {
+        pinMode(STATUS_LED_PIN, LOW);
+        delay(200);
+        pinMode(STATUS_LED_PIN, HIGH);
+        delay(200);
+    }
 
     // Init Sensors
     delay(50); // Give sensors time to start up
@@ -96,6 +108,9 @@ void loop() {
                     if (freq < 20) {
                         freq = 20;
                     }
+                    break;
+                case 115: //s -> set travelspeed of IMU is it attached to slow moving vehicle or fast moving
+                    SpeedProfile(Serial.read());
                     break;
                 default: // unknown command do nothing
                     break;

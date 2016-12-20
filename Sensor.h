@@ -17,6 +17,8 @@ public:
 
     float *getXYZ();
 
+    virtual void SpeedProfile(uint8_t profile);
+
 protected:
     float xyz_[3];
     const int16_t addr_;

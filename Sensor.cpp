@@ -43,3 +43,7 @@ bool Sensor::request(uint8_t *buffer, uint8_t size, byte addr) {
 Sensor::~Sensor() {
 
 }
+
+void Sensor::SpeedProfile(uint8_t profile) {
+
+}

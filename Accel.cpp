@@ -31,3 +31,22 @@ void Accel::read() {
     }
     //TODO error handling if read error
 }
+
+void Accel::SpeedProfile(uint8_t profile) {
+    byte range[2] = {0x31, 0b00000000}; // +/- 2g (default value)
+    switch (profile) {
+        case 1:
+            range[1] = 0b00000001; // +/- 4g
+            break;
+        case 2:
+            range[1] = 0b00000010; // +/- 8g
+            break;
+        case 3:
+            range[1] = 0b00000011; // +/- 16g
+            break;
+        default:
+            break;
+    }
+    send(range, 2); // Set range register
+    delay(5);
+}

@@ -16,4 +16,6 @@ public:
     ~Accel();
 
     virtual void read() override;
+
+    void SpeedProfile(uint8_t profile);
 };
