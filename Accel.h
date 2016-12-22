@@ -18,4 +18,6 @@ public:
     virtual void read() override;
 
     void SpeedProfile(uint8_t profile);
+private:
+    float mg = 0.046;
 };
