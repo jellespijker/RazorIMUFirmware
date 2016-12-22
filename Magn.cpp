@@ -17,9 +17,9 @@ Magn::~Magn() {
 void Magn::read() {
     uint8_t buffer[6];
     if (request(buffer, 6, 0x03)) {
-        xyz_[0] = -1 * (int16_t) (((((uint16_t) buffer[4]) << 8) | buffer[5]));  // X axis (internal sensor -y axis)
-        xyz_[1] = -1 * (int16_t) (((((uint16_t) buffer[0]) << 8) | buffer[1]));  // Y axis (internal sensor -x axis)
-        xyz_[2] = -1 * (int16_t) (((((uint16_t) buffer[2]) << 8) | buffer[3]));  // Z axis (internal sensor -z axis)
+        xyz_[0] = (-1 * (int16_t) (((((uint16_t) buffer[4]) << 8) | buffer[5])))/10000.f;  // X axis in Tesla
+        xyz_[1] = (-1 * (int16_t) (((((uint16_t) buffer[0]) << 8) | buffer[1])))/10000.f;  // Y axis in Tesla
+        xyz_[2] = (-1 * (int16_t) (((((uint16_t) buffer[2]) << 8) | buffer[3])))/10000.f;  // Z axis in Tesla
     }
     //TODO error handling if read error
 }
