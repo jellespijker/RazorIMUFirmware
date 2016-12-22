@@ -27,8 +27,8 @@ Gyro::~Gyro() {
 void Gyro::read() {
     uint8_t buffer[6];
     if (request(buffer, 6, 0x1D)) {
-        xyz_[0] = -1 * (int16_t) (((((uint16_t) buffer[2]) << 8) | buffer[3]));    // X axis (internal sensor -y axis)
-        xyz_[1] = -1 * (int16_t) (((((uint16_t) buffer[0]) << 8) | buffer[1]));    // Y axis (internal sensor -x axis)
-        xyz_[2] = -1 * (int16_t) (((((uint16_t) buffer[4]) << 8) | buffer[5]));    // Z axis (internal sensor -z axis)
+        xyz_[0] = (-1 * (int16_t) (((((uint16_t) buffer[2]) << 8) | buffer[3]))) * 0.001214; //X-axis
+        xyz_[1] = (-1 * (int16_t) (((((uint16_t) buffer[0]) << 8) | buffer[1]))) * 0.001214; //Y-axis
+        xyz_[2] = (-1 * (int16_t) (((((uint16_t) buffer[4]) << 8) | buffer[5]))) * 0.001214; //Z-axis
     }
 }
