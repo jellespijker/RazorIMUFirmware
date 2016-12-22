@@ -40,19 +40,21 @@ void ByteSend() {
 }
 
 void TextSend() {
-    pinMode(STATUS_LED_PIN, HIGH);
-    Serial.println("A:" + String(sensors[0]->getXYZ()[0]) + "," + String(sensors[0]->getXYZ()[1]) + "," +
-                   String(sensors[0]->getXYZ()[2]));
-    Serial.println("M:" + String(sensors[1]->getXYZ()[0]) + "," + String(sensors[1]->getXYZ()[1]) + "," +
-                   String(sensors[1]->getXYZ()[2]));
-    Serial.println("G:" + String(sensors[2]->getXYZ()[0]) + "," + String(sensors[2]->getXYZ()[1]) + "," +
+    //Serial.println("A:" + String(sensors[0]->getXYZ()[0]) + "," + String(sensors[0]->getXYZ()[1]) + "," +
+    //               String(sensors[0]->getXYZ()[2]));
+    //Serial.println("M:" + String(sensors[1]->getXYZ()[0]) + "," + String(sensors[1]->getXYZ()[1]) + "," +
+    //               String(sensors[1]->getXYZ()[2]));
+    Serial.println(/*"G:" + */String(sensors[2]->getXYZ()[0]) + "," + String(sensors[2]->getXYZ()[1]) + "," +
                    String(sensors[2]->getXYZ()[2]));
-    pinMode(STATUS_LED_PIN, LOW);
 }
 
 void SpeedProfile(uint8_t profile) {
     // Set the ADXL345 Range
     sensors[0]->SpeedProfile(profile);
+}
+
+void SetCalibrationProfile() {
+
 }
 
 void setup() {
@@ -110,7 +112,10 @@ void loop() {
                     }
                     break;
                 case 115: //s -> set travelspeed of IMU is it attached to slow moving vehicle or fast moving
-                    SpeedProfile(Serial.read());
+                    SpeedProfile(static_cast<int>(Serial.read()));
+                    break;
+                case 99: //c -> Calibration profile expect an array of 15 floats, format XYZ
+                    SetCalibrationProfile();
                     break;
                 default: // unknown command do nothing
                     break;
