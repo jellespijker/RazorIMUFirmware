@@ -44,7 +44,11 @@ void TextSend() {
     //               String(sensors[0]->getXYZ()[2]));
     //Serial.println("M:" + String(sensors[1]->getXYZ()[0]) + "," + String(sensors[1]->getXYZ()[1]) + "," +
     //               String(sensors[1]->getXYZ()[2]));
-    Serial.println(/*"G:" + */String(sensors[2]->getXYZ()[0]) + "," + String(sensors[2]->getXYZ()[1]) + "," +
+    //Serial.println(/*"G:" + */String(sensors[2]->getXYZ()[0]) + "," + String(sensors[2]->getXYZ()[1]) + "," +
+    //               String(sensors[2]->getXYZ()[2]));
+    Serial.println(String(millis()) + "," + String(sensors[0]->getXYZ()[0]) + "," + String(sensors[0]->getXYZ()[1]) + "," +
+                   String(sensors[0]->getXYZ()[2]) + "," + String(sensors[1]->getXYZ()[0]) + "," + String(sensors[1]->getXYZ()[1]) + "," +
+                   String(sensors[1]->getXYZ()[2]) + "," + String(sensors[2]->getXYZ()[0]) + "," + String(sensors[2]->getXYZ()[1]) + "," +
                    String(sensors[2]->getXYZ()[2]));
 }
 

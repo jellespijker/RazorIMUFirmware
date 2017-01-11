@@ -19,5 +19,5 @@ public:
 
     void SpeedProfile(uint8_t profile);
 private:
-    float mg = 0.046;
+    float mg = 0.049;
 };
